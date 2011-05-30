@@ -1,0 +1,18 @@
+{
+  "author": "Mikeal Rogers <mikeal.rogers@gmail.com>",
+  "name": "offliner",
+  "description": "Offline web application builder.",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "main": "main.js",
+  "scripts": {
+    "offliner": "bin.js"
+  },
+  "dependencies": {
+    "couchapp":"0.8.0",
+    "optimist":"0.2.3"
+  },
+  "devDependencies": {}
+}
