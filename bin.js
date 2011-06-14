@@ -37,22 +37,26 @@ if (optimist.argv.create) {
     var appdir = path.join(process.env.PWD, optimist.argv.create)
     fs.mkdirSync(appdir, 0777)
   }
-  fs.mkdirSync(path.join(appdir, 'build'), 0777)
-  fs.mkdirSync(path.join(appdir, 'static'), 0777)
+  fs.mkdirSync(path.join(appdir, 'tmp'), 0777)
+  fs.mkdirSync(path.join(appdir, 'lib'), 0777)
+  fs.mkdirSync(path.join(appdir, 'www'), 0777)
+  fs.mkdirSync(path.join(appdir, 'bin'), 0777)
   
   // Setup couchapp
-  var couchapp = require('couchapp');
-  copytree(path.join(couchapp.bin.boilerDirectory, 'attachments'), path.join(appdir, 'static'))
-  fs.writeFileSync(path.join(appdir, 'build', 'app.js'), fs.readFileSync(path.join(__dirname, 'attachments', 'app.js')))
+  copytree(path.join(__dirname, 'www'), path.join(appdir, 'www'))
+  fs.writeFileSync(path.join(appdir, 'lib', 'app.js'), fs.readFileSync(path.join(__dirname, 'lib', 'app.js')))
   
-  var c = child_process.spawn('npm', ['install', 'offliner'], {cwd:appdir})
-  c.stdout.pipe(process.stdout)
-  c.stderr.pipe(process.stderr)
-  c.on('exit', function () {
-    if (process.env.PATH.indexOf('./node_modules/bin') === -1 ) {
-      console.error('Your PATH does not have ./node_modules/bin, this will make your life easier.')
-    }
-  })
+  copytree(path.join(__dirname, 'bins'), path.join(appdir, 'bin'))
+  // var c = child_process.exec('npm install offliner', {cwd:appdir}, function () {
+  //   
+  // })
+  // c.stdout.pipe(process.stdout)
+  // c.stderr.pipe(process.stderr)
+  // c.on('exit', function () {
+  //   if (process.env.PATH.indexOf('./node_modules/bin') === -1 ) {
+  //     console.error('Your PATH does not have ./node_modules/bin, this will make your life easier.')
+  //   }
+  // })
 }
 
 function copytree (source, dest) {
