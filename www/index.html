@@ -10,10 +10,21 @@
     
     <title></title>
     <link href="layout.css" rel="stylesheet" type="text/css" />
+    
+    <script>
+      var appCache = window.applicationCache;
+      window.applicationCache.addEventListener("updateready", function () {
+        appCache.swapCache();
+        location.reload();
+      })
+    </script>
+    
     <script language="javascript" type="text/javascript" src="jquery-1.4.4.min.js"></script>
     <script language="javascript" type="text/javascript" src="pouchdb.js"></script>
     <script language="javascript" type="text/javascript" src="sammy/sammy.js"></script>
     <script language="javascript" type="text/javascript" src="site.js"></script>
+    <script>
+    </script>
   </head>
   
   <body>
