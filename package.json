@@ -11,8 +11,8 @@
     "offliner": "bin.js"
   },
   "dependencies": {
-    "couchapp":"0.8.0",
-    "optimist":"0.2.3"
+    "couchapp":"0.11.0",
+    "optimist":"0.6.1"
   },
   "devDependencies": {}
 }
